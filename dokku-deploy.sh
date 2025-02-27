@@ -301,8 +301,9 @@ function setup_deployment_env() {
         # Change to the project directory
         cd "$PROJ_DIR" || log_error "Failed to change directory to $PROJ_DIR"
 
-        git config user.email "support@eclathealthcare.com"
-        git config user.name "Eclat Bot" 
+        
+        #git config user.email "support@eclathealthcare.com"
+        #git config user.name "Eclat Bot" 
 
         # Pull latest changes
         git pull origin $BRANCH || log_error "Failed to pull latest changes"
