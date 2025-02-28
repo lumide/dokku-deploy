@@ -302,8 +302,15 @@ function setup_deployment_env() {
         cd "$PROJ_DIR" || log_error "Failed to change directory to $PROJ_DIR"
 
         
-        #git config user.email "support@eclathealthcare.com"
-        #git config user.name "Eclat Bot" 
+        git config user.email "support@eclathealthcare.com"
+        git config user.name "Eclat Bot" 
+
+        # Perform hard reset based on branch
+        if [[ "$BRANCH" == "fix_treatment_plan_response_time.dev" ]]; then
+            git reset --hard origin/fix_treatment_plan_response_time.dev || log_error "Failed to hard reset fix_treatment_plan_response_time.dev"
+        elif [[ "$BRANCH" == "dev" ]]; then
+            git reset --hard origin/dev || log_error "Failed to hard reset dev branch"
+        fi
 
         # Pull latest changes
         git pull origin $BRANCH || log_error "Failed to pull latest changes"
